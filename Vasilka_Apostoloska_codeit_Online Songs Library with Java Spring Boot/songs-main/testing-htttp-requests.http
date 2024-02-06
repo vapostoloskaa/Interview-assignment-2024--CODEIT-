@@ -1,0 +1,64 @@
+# Add a new artist
+POST http://localhost:8080/api/artists
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "artisticName": "Johnny",
+  "dateOfBirth": "1975-04-23",
+  "nationality": "Macedonian"
+}
+
+# Add a new song for the specified artist
+POST http://localhost:8080/api/songs
+Content-Type: application/json
+
+{
+  "title": "New Song",
+  "duration": 4,
+  "releaseDate": "2021-07-21",
+  "genre": "Pop",
+  "artistId": 1
+}
+
+# Add a new playlist
+POST http://localhost:8080/api/playlists
+Content-Type: application/json
+
+{
+  "name": "My Playlist",
+  "dateOfCreation": "2021-08-01",
+  "status": "public"
+}
+
+# Get all the artists born before 1999 and nationality is Macedonian
+GET http://localhost:8080/api/artists?bornBefore=1999&nationality=Macedonian
+
+# Get specified artist with all their details including the list of their songs
+GET http://localhost:8080/api/artists/1/songs
+
+# Get the song with the longest duration from a specified artist of a certain genre
+GET http://localhost:8080/api/songs/longest?artistId=1&genre=Pop
+
+# Get all playlists containing songs by a specified artist
+GET http://localhost:8080/api/playlists?artistId=1
+
+# Get all the playlists which are public and contain a maximum of 3 songs
+GET http://localhost:8080/api/playlists?status=public&maxSongs=3
+
+# Calculate total duration of all the songs for the specified playlist
+GET http://localhost:8080/api/playlists/1/duration
+
+# Add an existing song to a specified playlist
+POST http://localhost:8080/api/playlists/1/songs
+Content-Type: application/json
+
+{
+  "songId": 2
+}
+
+# Delete specified playlist
+DELETE http://localhost:8080/api/playlists/1
+
+# Get first 3 songs with duration between 5 and 10 minutes
+GET http://localhost:8080/api/songs?minDuration=5&maxDuration=10&limit=3
